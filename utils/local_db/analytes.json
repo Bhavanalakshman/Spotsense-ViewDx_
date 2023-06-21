@@ -1,0 +1,214 @@
+{
+	"blood_profile": {
+		"1": {
+			"test_name": "Blood Group Test",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "",
+			"cal_date": ""
+		},
+		"2": {
+			"test_name": "TSH (uIU/ml)",
+			"batch_id": "26122-03",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1.03/18.3",
+			"cal_date": "19/12/22"
+		},
+		"3": {
+			"test_name": "TSH(Paediatric)",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/70/400",
+			"cal_date": "01/23"
+			},
+		"4": {
+			"test_name": "Ferritin",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"5": {
+			"test_name": "D-Dimer",
+			"batch_id": "MT028006",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+		}
+	},
+	
+	"NeonatalSepsis": {
+		"1": {
+			"test_name": "Salivary PCT",
+			"batch_id": "MT029005",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"2": {
+			"test_name": "Salivary CRP",
+			"batch_id": "S048022002",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+		}
+	},
+			
+	"Inflammation": {
+		"1": {
+			"test_name": "CRP (ng/ml)",
+			"batch_id": "S048022104",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/3/20",
+			"cal_date": ""
+		},
+		"2": {
+			"test_name": "PCT",
+			"batch_id": "MT029005",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"3": {
+			"test_name": "Rheumatoid Factor",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+		}
+	},
+	"CardiacPanel": {
+		"1": {
+			"test_name": "CKMB/MYO/TnI combo",
+			"batch_id": "MT027006",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+		},
+		"2": {
+			"test_name": "Troponin I",
+			"batch_id": "mt019015",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+		},		
+		"3": {
+			"test_name": "NT-proBNP",
+			"batch_id": "MT054004",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+		}
+	},
+	"STDPanel": {
+		"1": {
+			"test_name": "HIV",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+			},
+		"2": {
+			"test_name": "Syphilis",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+			},
+		"3": {
+			"test_name": "Chlamydia trachomatis",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+		}
+	},
+	"CancerMarkers": {
+		"1": {
+			"test_name": "Prostrate Specific Antigen (PSA)",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"2": {
+			"test_name": "Fecal Occult Blood",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"3": {
+			"test_name": "Carcinoembryonic antigen (CEA)",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			}},
+	"FertilityPanel": {
+		"1": {
+			"test_name": "Luteinizing Hormone (LH)",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"2": {
+			"test_name": "Follicle-Stimulating Hormone(FSH)",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"3": {
+			"test_name": "beta hCG",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+			},
+		"4": {
+			"test_name": "Prolactin",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/2",
+			"cal_date": ""
+		}
+	},
+	"InfectiousDiseases": {
+		"1": {
+			"test_name": "S.typhi (IgG/IgM)",
+			"batch_id": "MT010018",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+			},
+		"2": {
+			"test_name": "Dengue (NS1 and Ag+Ab)",
+			"batch_id": "MT004053",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+			},
+		"3": {
+			"test_name": "Hepatits C virus",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+			},
+		"4": {
+			"test_name": "Hepatits-B Surface antigen",
+			"batch_id": "8220817",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+			},
+		"5": {
+			"test_name": "Malaria Ag (p.f/Pan)",
+			"batch_id": "",
+			"manufacturer": "SpotSense",
+			"cal_id": "1/1/1",
+			"cal_date": ""
+	}}}
+

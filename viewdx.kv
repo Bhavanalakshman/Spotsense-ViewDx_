@@ -1,0 +1,509 @@
+<CustomKeyboard>:
+	orientation: "vertical"
+	id: keyboard
+	
+<Item>:
+	id:items
+	
+<resultlist>:
+	orientation: "vertical"
+	id: resulthistory
+
+<mainsplash>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+            title: ""
+            specific_text_color: (1,1,1,1)
+            right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+            left_action_items: [["database-check",lambda x: app.showresults()]]          
+		Image:
+			source: 'logos.png'
+		MDToolbar:
+			title: ""
+			right_action_items: [["forward", lambda x: app.changeto()]]
+			specific_text_color: 1,1,1,1
+
+<homepage>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			size_hint_y: 0.1
+			title: ""
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check",lambda x: app.showresults()]]
+			specific_text_color: (1,1,1,1)
+		MDGridLayout:
+			cols: 4
+			rows: 2
+			spacing: dp(30)
+			padding: dp(30)
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+			MDCard:
+				id: blood_profile
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("blood_profile")
+				MDLabel:
+					text: "Blood Profile"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+					
+			MDCard:
+				id: CancerMarkers
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("CancerMarkers")
+				MDLabel:
+					text: "Cancer Markers"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+			MDCard:
+				id: CardiacPanel
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("CardiacPanel")
+				MDLabel:
+					text: "Cardiac Panel"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+			MDCard:
+				id: FertilityPanel
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("FertilityPanel")
+				MDLabel:
+					text: "Fertility Panel"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+			MDCard:
+				id: InfectiousDiseases
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("InfectiousDiseases")
+				MDLabel:
+					text: "InfectiousDiseases"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+			MDCard:
+				id: Inflammation
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("Inflammation")
+				MDLabel:
+					text: "Inflammation"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+					
+			MDCard:
+				id: NeonatalSepsis
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("NeonatalSepsis")
+				MDLabel:
+					text: "Neonatal Sepsis"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+			MDCard:
+				id: STDPanel
+				orientation: "vertical"
+				focus_behaviour: True
+				ripple_behaviour: True
+				size_hint: None, None
+				size: "150dp", "150dp"
+				on_release: root.onpress("STDPanel")
+				MDLabel:
+					text: "STD Panel"
+					halign: 'center'
+					valign: 'center'
+					height: self.texture_size[1]
+				MDLabel:
+					text: "_____"
+					halign: 'center'
+					height: self.texture_size[1]
+<instruction>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: ""
+			specific_text_color: 1,1,1,1
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check", lambda x: app.showresults()]]
+		Image:
+			id: image
+			size_hint_y: 0.4
+			allow_stretch: True
+		MDRectangleFlatIconButton:
+			size_hint_x: 1
+			size_hint_y: 0.1
+			text: "Enter test details"
+			font_size: "20dp"
+			halign: 'center'
+			icon: "check-bold"
+			on_press: root.manager.current = 'main_reqid'
+			specific_text_color: (1,1,1,1)
+
+<main_reqid>:
+	BoxLayout:
+		orientation: "vertical"
+		MDLabel:
+			size_hint_y: 0.2
+			text: 'Please enter the requisition id'
+			halign: 'center'
+		CustomKeyboard:
+			size_hint_y:0.7
+			id: keyboard
+		MDRectangleFlatIconButton:
+			size_hint_x: 1
+			size_hint_y: 0.1
+			text: "Enter"
+			font_size: "20dp"
+			bold: True
+			halign: 'center'
+			icon: "check-bold"
+			on_press: root.get_req()
+			specific_text_color: (1,1,1,1)
+
+<main_calid>:
+	BoxLayout:
+		orientation: "vertical"
+		MDLabel:
+			size_hint_y: 0.2
+			text: 'Please enter the calibration id'
+			halign: 'center'
+		CustomKeyboard:
+			size_hint_y:0.7
+			id: keyboard
+		MDRectangleFlatIconButton:
+			size_hint_x: 1
+			size_hint_y: 0.1
+			text: "Enter"
+			font_size: "20dp"
+			bold: True
+			halign: 'center'
+			icon: "check-bold"
+			on_press: root.get_cal()
+			specific_text_color: (1,1,1,1)
+
+<test_result_single>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: ""
+			specific_text_color: (1,1,1,1)
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check", lambda x: app.showresults()]]
+		MDBoxLayout:
+			orientation: 'horizontal'
+			MDBoxLayout:
+				id: test_results
+				orientation: "vertical"
+				MDLabel:
+					id: test_time
+					text: "Time of Test"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: req_id
+					text: "Requisition id"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_name
+					text: "Test Name"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_batch_id
+					text: "Batch id"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_cal_id
+					text: "Calibration id"
+					halign: 'center'
+					markup: True
+				MDLabel:
+					id: test_cal_date
+					text: "Calibration date"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_value
+					text: "Value"
+					bold: True
+					halign: 'center'
+					markup: True
+			MDBoxLayout:
+				orientation: 'vertical'
+				Image:
+					id: test_image
+					source: ''
+					markup: True
+					keep_data: False
+				Image:
+					id: chart_image
+					source: ''
+					markup: True
+					keep_data: False
+<test_result_cardiaccombo>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: ""
+			specific_text_color: (1,1,1,1)
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check", lambda x: app.showresults()]]
+		MDBoxLayout:
+			orientation: 'horizontal'
+			MDBoxLayout:
+				id: test_results
+				orientation: "vertical"
+				MDLabel:
+					id: req_id
+					text: "Requisition id"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_name
+					text: "Test Name"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_batch_id
+					text: "Batch id"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_value
+					text: "Value"
+					bold: True
+					halign: 'center'
+					markup: True
+			MDBoxLayout:
+				orientation: 'vertical'
+				Image:
+					id: test_image
+					source: ''
+					markup: True
+					keep_data: False
+				Image:
+					id: chart_image1
+					source: ''
+					markup: True
+					keep_data: False
+				Image:
+					id: chart_image2
+					source: ''
+					markup: True
+					keep_data: False
+				Image:
+					id: chart_image3
+					source: ''
+					markup: True
+					keep_data: False															
+				Image:
+					id: chart_image4
+					source: ''
+					markup: True
+					keep_data: False
+<test_result_dengue>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: ""
+			specific_text_color: (1,1,1,1)
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check", lambda x: app.showresults()]]
+		MDBoxLayout:
+			orientation: 'horizontal'
+			MDBoxLayout:
+				id: test_results
+				orientation: "vertical"
+				MDLabel:
+					id: req_id
+					text: "Requisition id"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_name
+					text: "Test Name"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_batch_id
+					text: "Batch id"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_cal_id
+					text: "Calibration id"
+					halign: 'center'
+					markup: True
+				MDLabel:
+					id: test_cal_date
+					text: "Calibration date"
+					markup: True
+					halign: 'center'
+				MDLabel:
+					id: test_value
+					text: "Value"
+					bold: True
+					halign: 'center'
+					markup: True
+			MDBoxLayout:
+				orientation: 'vertical'
+				Image:
+					id: test_image
+					source: ''
+					markup: True
+					keep_data: False
+				Image:
+					id: chart_image1
+					source: ''
+					markup: True
+					keep_data: False
+				Image:
+                	id: chart_image2
+                	source: ''
+                	markup: True
+                	keep_data: False
+
+<analytepage>:
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			id: scroll_layout
+								
+<setup_network>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: 'Click on dropdown button to select SSID'
+			specific_text_color: (1,1,1,1)
+			right_action_items: [["arrow-down-drop-circle-outline", lambda x: root.show_menu() ]]
+		Label:
+			size_hint_y:0.1
+			text: 'Please Enter WiFi Password'
+			font_size: 18
+			color: (0,0,0,1)
+		CustomKeyboard:
+			id: keyboard
+		MDToolbar:
+			title: "Connect"
+			left_action_items: [["cloud-check-outline", lambda x: root.connect_to_wifi()]]
+			right_action_items: [["forward", lambda x: app.changeto()]]
+			specific_text_color: (1,1,1,1)
+
+<device_infopage>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: ""
+			specific_text_color: (1,1,1,1)
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check", lambda x: app.showresults()]]
+		BoxLayout:
+			orientation: "vertical"
+			MDLabel:
+				id: device_id
+				text: "Device id:"
+				halign: 'center'
+				markup: True
+			Image:
+				source: 'qrcode.png'
+			MDLabel:
+				id: device_passkey
+				text: "Device activation code"
+				halign: 'center'
+				markup: True
+		MDToolbar:
+			title: "Connect"
+			left_action_items: [["cloud-check-outline", lambda x: app.connectwifi()]]
+			right_action_items: [["forward", lambda x: app.changeto()]]
+			specific_text_color: (1,1,1,1)
+
+<call_support>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+			title: ""
+			specific_text_color: (1,1,1,1)
+			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+			left_action_items: [["database-check", lambda x: app.showresults()]]
+		BoxLayout:
+			orientation: "vertical"
+			MDLabel:
+				text: "Please scan the QRcode :"
+				halign: 'center'
+			MDLabel:
+				text: "to register your issue with us"
+				halign: 'center'
+			Image:
+				source: 'callsupport.png'
+			MDLabel:
+				id: install_date
+				text: "Device install date:"
+				halign: 'center'
+				markup: True				
+		MDToolbar:
+			title: "Connect"
+			left_action_items: [["cloud-check-outline", lambda x: app.connectwifi()]]
+			right_action_items: [["forward", lambda x: app.changeto()]]
+			specific_text_color: (1,1,1,1)

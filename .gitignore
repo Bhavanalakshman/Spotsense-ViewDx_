@@ -1,0 +1,6 @@
+captured/*
+documents/*
+
+# KEEP THESE FLES/FOLDERS
+!captured/.gitkeep
+!documents/.gitkeep
