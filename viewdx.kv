@@ -8,6 +8,30 @@
 <resultlist>:
 	orientation: "vertical"
 	id: resulthistory
+	
+	
+<first_screen>:
+	BoxLayout:
+		orientation: "vertical"
+		MDToolbar:
+            title: "Help"
+            
+            specific_text_color: (1,1,1,1)
+            right_action_items: [["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]          
+		Image:
+			source: 'logos.png'
+		MDToolbar:
+			title: "Scan_QR"
+			anchor_title: "right"
+			right_action_items: [["forward", lambda x: app.changeto()]]
+			specific_text_color: 1,1,1,1
+			
+<QR_scan>:
+    MDFillRoundFlatButton:
+        text:"Insert ID-card in the slot and Scan"
+        pos_hint:{'center_x':0.5, 'center_y':0.5}
+        specific_text_color: 1,1,1,1
+        on_press : app.QR_scan()
 
 <mainsplash>:
 	BoxLayout:
@@ -16,7 +40,6 @@
             title: ""
             specific_text_color: (1,1,1,1)
             right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
-            left_action_items: [["database-check",lambda x: app.showresults()]]          
 		Image:
 			source: 'logos.png'
 		MDToolbar:
@@ -302,67 +325,7 @@
 					source: ''
 					markup: True
 					keep_data: False
-<test_result_cardiaccombo>:
-	BoxLayout:
-		orientation: "vertical"
-		MDToolbar:
-			title: ""
-			specific_text_color: (1,1,1,1)
-			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
-			left_action_items: [["database-check", lambda x: app.showresults()]]
-		MDBoxLayout:
-			orientation: 'horizontal'
-			MDBoxLayout:
-				id: test_results
-				orientation: "vertical"
-				MDLabel:
-					id: req_id
-					text: "Requisition id"
-					markup: True
-					halign: 'center'
-				MDLabel:
-					id: test_name
-					text: "Test Name"
-					markup: True
-					halign: 'center'
-				MDLabel:
-					id: test_batch_id
-					text: "Batch id"
-					markup: True
-					halign: 'center'
-				MDLabel:
-					id: test_value
-					text: "Value"
-					bold: True
-					halign: 'center'
-					markup: True
-			MDBoxLayout:
-				orientation: 'vertical'
-				Image:
-					id: test_image
-					source: ''
-					markup: True
-					keep_data: False
-				Image:
-					id: chart_image1
-					source: ''
-					markup: True
-					keep_data: False
-				Image:
-					id: chart_image2
-					source: ''
-					markup: True
-					keep_data: False
-				Image:
-					id: chart_image3
-					source: ''
-					markup: True
-					keep_data: False															
-				Image:
-					id: chart_image4
-					source: ''
-					markup: True
-					keep_data: False
+
 <test_result_dengue>:
 	BoxLayout:
 		orientation: "vertical"
@@ -424,6 +387,74 @@
                 	source: ''
                 	markup: True
                 	keep_data: False
+<test_result_cc>:
+    BoxLayout:
+        orientation: "vertical"
+        MDToolbar:
+            title:""
+            specific_text_color: (1,1,1,1)
+            right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
+            left_action_items: [["database-check", lambda x: app.showresults()]]
+            MDBoxLayout:
+                orientation: 'horizontal'
+                MDBoxLayout:
+                    id: test_results
+                    orientation: "vertical"
+                    MDLabel:
+                        id: req_id
+                        text: "Requisition id"
+                        markup: True
+                        halign: 'center'
+                    MDLabel:
+                        id: test_name
+                        text: "Test Name"
+                        markup: True
+                        halign: 'center'
+                    MDLabel:
+                        id: test_batch_id
+                        text: "Batch id"
+                        markup: True
+                        halign: 'center'
+                    MDLabel:
+                        id: test_cal_id
+                        text: "Calibration id"
+                        halign: 'center'
+                        markup: True
+                    MDLabel:
+                        id: test_cal_date
+                        text: "Calibration date"
+                        markup: True
+                        halign: 'center'
+                    MDLabel:
+                        id: test_value
+                        text: "Value"
+                        bold: True
+                        halign: 'center'
+                        markup: True
+                    MDBoxLayout:
+                        orirntation: 'vertical'
+                        Image:
+                            id: test_image
+                            source: ''
+                            markup: True
+                            keep_data: False
+                        Image:
+                            id: chart_image1
+                            source: ''
+                            markup: True
+                            keep_data: False
+                        Image:
+                            id: chart_image2
+                            source: ''
+                            markup: True
+                            keep_data: False
+                        Image:
+                            id: chart_image3
+                            source: ''
+                            markup: True
+                            keep_data: False
+
+        
 
 <analytepage>:
 	BoxLayout:

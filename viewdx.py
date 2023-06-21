@@ -45,14 +45,30 @@ from utils.updater import check_for_updates, do_update
 from utils.wifi import ssid_list, connect_to_ssid
 from utils.local_db import *
 from utils.imagepro import *
+from utils.QR import *
+from utils.QR import QR_scan_function
 from utils.pdf import PDF
 from timeit import default_timer as timer
+
 #-------------------------------------------GLOBAL VARIABLES---------------------------------------
 #IS_UPDATE_AVAILABLE = False
 #IS_UPDATE_AVAILABLE = check_for_updates() # CHECK FOR UPDATES
 set_app_path(os.path.abspath(__file__)) # SET ROOT DIRECTORY PATH
 
-#-------------------------------------------mainsplash---------------------------------------------
+#-------------------------------------------First_screen--------------------------------------------
+
+class first_screen(Screen):
+    def __init(self, **kwargs):
+        super(first_screen, self).__init__(**kwargs)
+    pass
+
+#------------------------------------------------Qr_scan----------------------------------------
+class QR_scan(Screen):
+    def __init(self, **kwargs):
+        super(QR_scan, self).__init__(**kwargs)
+    pass
+
+# ----------------------------------------------mainsplash---------------------------------------------------
 
 class mainsplash(Screen):
     def __init(self, **kwargs):
@@ -302,7 +318,7 @@ class main_calid(Screen):
                 if test.split(',')[0] == 'TSH (uIU/ml)':
                     self.roi_image = roi_singlecard(self.captured_image)
                     array = scan_card(self.roi_image)
-                    self.value = get_tsh(array, self.name, 2, 1, self.cal_id)
+                    self.value = (array, self.name, 2, 1, self.cal_id)
                     self.show_results_single() 
                 else:
                    self.roi_image = roi_singlecard(self.captured_image)
@@ -372,6 +388,8 @@ class main_calid(Screen):
                 elif test.split(',')[0] == 'S.typhi (IgG/IgM)':
 #                     cv2.imwrite(get_path('captured/croped2.jpg'),self.captured_image[50:480, 280:-350])
                     self.roi_image = roi_segment(self.captured_image[:480, 280:-350])
+                    print("self.roi_image",self.roi_image)
+                    print(type(self.roi_image))
 #                     cv2.imwrite(get_path('captured/croped2.jpg'),self.captured_image[:480, 300:-600])
                     array = scan_card(self.roi_image)
                     self.value = styphi(array, 3, 1)
@@ -487,10 +505,13 @@ class viewdx(MDApp):
         self.theme_cls.primary_hue = "900"
         self.theme_cls.accent_palette = 'Cyan'
         self.theme_cls.accent_hue = '900'
+        self.error = None
         sm = ScreenManager()
+        sm.add_widget(first_screen(name='first_screen '))
+        sm.add_widget(QR_scan(name='QR_scan'))
         sm.add_widget(mainsplash(name='mainsplash'))
         sm.add_widget(homepage(name='homepage'))
-        sm.add_widget(analytepage(name='analytepage'))
+        sm.add_widget(analytepage(name='analytepage'))                                                                                                       
         sm.add_widget(instruction(name='instruction'))
         sm.add_widget(main_reqid(name='main_reqid'))
         sm.add_widget(main_calid(name='main_calid'))
@@ -538,6 +559,7 @@ class viewdx(MDApp):
     def changeto(self):
         self.root.current = self.root.next()
     def shutdevice(self):
+        
         if not self.dialog:
             self.dialog = MDDialog(
                 text="Shutdown the system?",
@@ -549,5 +571,38 @@ class viewdx(MDApp):
         pass
     def shutdown(*args):
         os.system("shutdown now -h")
+    def QR_scan(self):
+        try:
+            self.captured_QR = QR_scan_function()
+            print(self.captured_QR)
+            print("im back")
+            
+            self.dialog = MDDialog(
+                text="QR Code Verified!",
+                buttons=[
+                        MDFillRoundFlatButton(text="Proceed", on_press=lambda _:self.dialog.dismiss()),
+                        ],
+                    )
+            self.dialog.open()
+            self.changeto()
+        except Exception as e:
+            print(e)
+            if not self.error:
+                self.error = MDDialog(text="Card Not Found")
+            self.error.open()
+         #   print("Card Not Found",e)
+
+        #self.QR_scan_function()
+#         if not self.dialog:
+#             self.dialog = MDDialog(
+#                 text="QRcode not found , Try again",
+#                 buttons=[
+#                      MDFlatButton(text="No", on_press=lambda _:self.dialog.dismiss()), MDFlatButton(text="Yes",on_press=lambda _:self.do_update()),
+#                  ],
+#              )
+#          self.dialog.open()
+#          pass
+#         
+    
 
 viewdx().run()

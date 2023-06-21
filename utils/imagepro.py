@@ -472,4 +472,4 @@ def cal_conc(temp,cal_id):
         traceback.print_exc()
         result = 'could not read test'
         print(e)
-    return result    
+    return result     
