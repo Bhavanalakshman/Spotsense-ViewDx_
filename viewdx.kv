@@ -9,7 +9,7 @@
 	orientation: "vertical"
 	id: resulthistory
 	
-	
+
 <first_screen>:
 	BoxLayout:
 		orientation: "vertical"
@@ -25,12 +25,16 @@
 			anchor_title: "right"
 			right_action_items: [["forward", lambda x: app.changeto()]]
 			specific_text_color: 1,1,1,1
-			
+
 <QR_scan>:
     MDFillRoundFlatButton:
         text:"Insert ID-card in the slot and Scan"
+        font_size:"24sp"
         pos_hint:{'center_x':0.5, 'center_y':0.5}
         specific_text_color: 1,1,1,1
+        size_hint: None, None
+        width: root.width*0.7
+        height: root.height*0.1
         on_press : app.QR_scan()
 
 <mainsplash>:
@@ -46,16 +50,21 @@
 			title: ""
 			right_action_items: [["forward", lambda x: app.changeto()]]
 			specific_text_color: 1,1,1,1
+			
+<CustomOneLineIconListItem>:
+    IconLeftWidget:
+        icon: ""
+
 
 <homepage>:
 	BoxLayout:
 		orientation: "vertical"
 		MDToolbar:
-			size_hint_y: 0.1
 			title: ""
+			specific_text_color: 1,1,1,1
 			right_action_items: [["step-backward", lambda x: app.gotoprevious()], ["home", lambda x: app.gohome()], ["wifi", lambda x: app.setwifi()], ["information", lambda x: app.deviceinfo()], ["phone", lambda x: app.callsupport()], ["update", lambda x: app.update()], ["power", lambda x: app.shutdevice()]]
-			left_action_items: [["database-check",lambda x: app.showresults()]]
-			specific_text_color: (1,1,1,1)
+			left_action_items: [["magnify", lambda x: app.on_left_action()]]
+			                
 		MDGridLayout:
 			cols: 4
 			rows: 2
@@ -200,6 +209,42 @@
 					text: "_____"
 					halign: 'center'
 					height: self.texture_size[1]
+					
+<SearchScreen>:
+ 
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: dp(20)
+        padding: dp(20)
+
+        MDLabel:
+            text: 'Search Tests'
+            font_style: 'H6'
+            theme_text_color: 'Secondary'
+            size_hint_y : 0.1
+            
+
+        MDTextField:
+            id: search_field
+            icon_right: 'magnify'
+            required: True
+            on_text: root.update_test_list(self.text)
+            size_hint_y : 0.2
+            size_hint_x: 0.8
+
+        RecycleView:
+            id: rv
+            viewclass: 'CustomOneLineIconListItem'
+            RecycleBoxLayout:
+                orientation: 'vertical'
+                spacing: dp(1)
+                padding: dp(1)
+                default_size: None, dp(60)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+
+
 <instruction>:
 	BoxLayout:
 		orientation: "vertical"
@@ -226,8 +271,9 @@
 	BoxLayout:
 		orientation: "vertical"
 		MDLabel:
-			size_hint_y: 0.2
+			size_hint_y: 0.1
 			text: 'Please enter the requisition id'
+			font_size: "20dp"
 			halign: 'center'
 		CustomKeyboard:
 			size_hint_y:0.7
@@ -247,8 +293,9 @@
 	BoxLayout:
 		orientation: "vertical"
 		MDLabel:
-			size_hint_y: 0.2
+			size_hint_y: 0.1
 			text: 'Please enter the calibration id'
+			font_size: "20dp"
 			halign: 'center'
 		CustomKeyboard:
 			size_hint_y:0.7

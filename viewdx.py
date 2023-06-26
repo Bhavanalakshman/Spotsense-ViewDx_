@@ -46,10 +46,14 @@ from utils.wifi import ssid_list, connect_to_ssid
 from utils.local_db import *
 from utils.imagepro import *
 from utils.QR import *
-from utils.QR import QR_scan_function
+
 from utils.pdf import PDF
 from timeit import default_timer as timer
-
+from kivy.properties import StringProperty
+from kivy.uix.recycleview import RecycleView
+from kivymd.uix.card import MDCard
+from utils.testslist import md_tests
+from kivy.uix.screenmanager import ScreenManager
 #-------------------------------------------GLOBAL VARIABLES---------------------------------------
 #IS_UPDATE_AVAILABLE = False
 #IS_UPDATE_AVAILABLE = check_for_updates() # CHECK FOR UPDATES
@@ -67,6 +71,8 @@ class QR_scan(Screen):
     def __init(self, **kwargs):
         super(QR_scan, self).__init__(**kwargs)
     pass
+
+
 
 # ----------------------------------------------mainsplash---------------------------------------------------
 
@@ -183,6 +189,29 @@ class setup_network(Screen):
     pass
 
 #--------------------------------------------test_screens------------------------------------------
+class CustomOneLineIconListItem(OneLineIconListItem):
+    pass
+
+class SearchScreen(Screen):
+    
+    tests = ['blood_profile', 'CancerMarkers', 'CardiacPanel', 'FertilityPanel', 'InfectiousDiseases', 'Inflammation',
+             'NeonatalSepsis', 'STDPanel', 'Inflammation','TSH (uIU/ml)','Fecal Occult Blood','Dengue (NS1 and Ag+Ab)','HIV', 'Malaria Ag (p.f/Pan)','S.typhi (IgG/IgM)' ]
+
+    def filter_tests(self, query):
+        filtered_tests = [test for test in self.tests if test.lower().startswith(query.lower())]
+        return filtered_tests
+
+    def select_test(self, test):
+        self.ids.search_field.text = test
+        # Perform additional actions with the selected test
+
+    def update_test_list(self, query):
+        filtered_tests = self.filter_tests(query)
+        self.ids.rv.data = [{'text': test} for test in filtered_tests]
+
+
+
+
 class homepage(Screen):
     def __init__(self, **kwargs):
         super(homepage, self).__init__(**kwargs)
@@ -196,7 +225,10 @@ class homepage(Screen):
         setattr(main_calid, 'id', id)
         self.manager.current='analytepage'
         pass
+    
     pass
+
+
 
 class analytepage(Screen):
     analyte=""
@@ -497,6 +529,7 @@ class test_result_cardiaccombo(Screen):
 
 
 class viewdx(MDApp):
+    
     dialog = None
     def build(self):
        # Window.size = (800, 480)
@@ -506,22 +539,33 @@ class viewdx(MDApp):
         self.theme_cls.accent_palette = 'Cyan'
         self.theme_cls.accent_hue = '900'
         self.error = None
-        sm = ScreenManager()
-        sm.add_widget(first_screen(name='first_screen '))
-        sm.add_widget(QR_scan(name='QR_scan'))
-        sm.add_widget(mainsplash(name='mainsplash'))
-        sm.add_widget(homepage(name='homepage'))
-        sm.add_widget(analytepage(name='analytepage'))                                                                                                       
-        sm.add_widget(instruction(name='instruction'))
-        sm.add_widget(main_reqid(name='main_reqid'))
-        sm.add_widget(main_calid(name='main_calid'))
-        sm.add_widget(test_result_single(name='test_result_single'))
-        sm.add_widget(test_result_dengue(name='test_result_dengue'))
-        sm.add_widget(test_result_cardiaccombo(name='test_result_cardiaccombo'))
-        sm.add_widget(setup_network(name='setup_network'))
-        sm.add_widget(device_infopage(name='device_infopage'))
-        sm.add_widget(call_support(name='call_support'))
-        return sm
+        
+        screen_manager = ScreenManager()
+        screen_manager.add_widget(first_screen(name='first_screen '))
+        #INITIALIZATION
+        screen_manager.add_widget(QR_scan(name='QR_scan'))
+        #sm.add_widget(search_menu(name='search_menu'))
+        screen_manager.add_widget(mainsplash(name='mainsplash'))
+        screen_manager.add_widget(homepage(name='homepage'))
+        screen_manager.add_widget(SearchScreen(name='search'))
+        screen_manager.add_widget(analytepage(name='analytepage'))                                                                                                       
+        screen_manager.add_widget(instruction(name='instruction'))
+        screen_manager.add_widget(main_reqid(name='main_reqid'))
+        screen_manager.add_widget(main_calid(name='main_calid'))
+        screen_manager.add_widget(test_result_single(name='test_result_single'))
+        screen_manager.add_widget(test_result_dengue(name='test_result_dengue'))
+        screen_manager.add_widget(test_result_cardiaccombo(name='test_result_cardiaccombo'))
+        screen_manager.add_widget(setup_network(name='setup_network'))
+        screen_manager.add_widget(device_infopage(name='device_infopage'))
+        screen_manager.add_widget(call_support(name='call_support'))
+
+        
+        return screen_manager
+    
+          
+    def on_left_action(self):
+        
+        self.root.current= 'search'
 
 
     #--------------functions
@@ -545,15 +589,7 @@ class viewdx(MDApp):
         pass
     def update(self):
         self.featureerror()
-        # if not self.dialog:
-        #     self.dialog = MDDialog(
-        #         text="Are you sure you want to update the system?",
-        #         buttons=[
-        #             MDFlatButton(text="No", on_press=lambda _:self.dialog.dismiss()), MDFlatButton(text="Yes",on_press=lambda _:self.do_update()),
-        #         ],
-        #     )
-        # self.dialog.open()
-        # pass
+
     def shutdevice(self):
         pass
     def changeto(self):
@@ -573,36 +609,33 @@ class viewdx(MDApp):
         os.system("shutdown now -h")
     def QR_scan(self):
         try:
-            self.captured_QR = QR_scan_function()
-            print(self.captured_QR)
-            print("im back")
-            
-            self.dialog = MDDialog(
-                text="QR Code Verified!",
-                buttons=[
+            captureQR()
+            QR_output = scan_qr_code()
+            if QR_output == True:
+                
+                self.dialog = MDDialog(
+                    text="QR Code Verified!",
+                    buttons=[
                         MDFillRoundFlatButton(text="Proceed", on_press=lambda _:self.dialog.dismiss()),
-                        ],
-                    )
-            self.dialog.open()
-            self.changeto()
+                    ],
+                )
+                self.dialog.open()
+                self.changeto()
+            else:
+                
+                self.dialog = MDDialog(
+                    text="Could not read QR code",
+                    buttons=[
+                        MDFillRoundFlatButton(text="Try Again", on_press=lambda _:self.dialog.dismiss()),
+                    ],
+                )
+                self.dialog.open()
+                
         except Exception as e:
             print(e)
             if not self.error:
                 self.error = MDDialog(text="Card Not Found")
             self.error.open()
-         #   print("Card Not Found",e)
-
-        #self.QR_scan_function()
-#         if not self.dialog:
-#             self.dialog = MDDialog(
-#                 text="QRcode not found , Try again",
-#                 buttons=[
-#                      MDFlatButton(text="No", on_press=lambda _:self.dialog.dismiss()), MDFlatButton(text="Yes",on_press=lambda _:self.do_update()),
-#                  ],
-#              )
-#          self.dialog.open()
-#          pass
-#         
-    
-
+      
+             
 viewdx().run()
